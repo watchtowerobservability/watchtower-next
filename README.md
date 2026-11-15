@@ -4,7 +4,11 @@ Watchtower for Next.js (app router, `output: 'standalone'`). Peers: `@watchtower
 
 ```ts
 // instrumentation.ts: safe in the edge compile; the node SDK loads only on the Node.js runtime (WT_INGEST_KEY)
+// One file, no `instrumentation.node.ts` split: the edge-light/worker export conditions resolve a no-op there.
 export { register, onRequestError } from '@watchtowerobservability/next';
+// with options instead of the line above:
+// import { register as wt } from '@watchtowerobservability/next';
+// export const register = () => wt({ redact: 'pii' });
 ```
 
 ```js
@@ -19,7 +23,7 @@ export default withWatchtower(nextConfig, { sourcemaps: { upload: true, deleteAf
 import { WatchtowerRUM } from '@watchtowerobservability/next/rum';
 <WatchtowerRUM rumKey={process.env.NEXT_PUBLIC_WT_KEY!} />   // consent="cookiemunch" (default) | "pending" | "granted"
 ```
-It starts the browser SDK once (endpoint `/api/wt`, the tunnel), follows Cookie Munch consent and reports app router route patterns.
+It starts the browser SDK once (endpoint `/api/wt`, the tunnel; `release` defaults to `NEXT_PUBLIC_WT_RELEASE`, which `withWatchtower` sets from `WT_RELEASE` or the CI git sha), follows Cookie Munch consent and reports app router route patterns.
 
 ```ts
 // app/api/wt/[...path]/route.ts
