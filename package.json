@@ -1,6 +1,6 @@
 {
   "name": "@watchtowerobservability/next",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/watchtowerobservability/watchtower-next.git"
@@ -40,7 +40,7 @@
   },
   "peerDependencies": {
     "@watchtowerobservability/browser": ">=0.5.5",
-    "@watchtowerobservability/node": ">=0.7.5",
+    "@watchtowerobservability/node": ">=0.7.9",
     "next": ">=14",
     "react": ">=18"
   },
