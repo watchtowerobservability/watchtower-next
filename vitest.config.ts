@@ -1,12 +1,13 @@
+import { existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { defineConfig } from "vitest/config";
 
 const src = (p: string): string => fileURLToPath(new URL(p, import.meta.url));
 
 export default defineConfig({
-  // the sibling SDKs by source, so the tests need no built dist
+  // in the monorepo the sibling SDKs by source, so the tests need no built dist; the published mirror uses the devDependencies
   resolve: {
-    alias: {
+    alias: !existsSync(src("../node/src")) ? {} : {
       "@watchtowerobservability/node/next-build": src("../node/src/integrations/next-build.ts"),
       "@watchtowerobservability/node/next-tunnel": src("../node/src/integrations/next-tunnel.ts"),
       "@watchtowerobservability/node/next": src("../node/src/integrations/next.ts"),
