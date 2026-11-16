@@ -67,7 +67,7 @@
     "test": "vitest run"
   },
   "devDependencies": {
-    "@types/node": "22.15.0",
+    "@types/node": "26.6.6",
     "@types/react": "18.3.12",
     "@types/react-dom": "^18.3.1",
     "@typescript/native-preview": "7.0.0-dev.20260707.2",
