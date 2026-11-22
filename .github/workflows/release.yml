@@ -34,7 +34,7 @@ jobs:
           v="$(node -p 'require("./package.json").version')"
           case "$v" in 0.0.0|0.0.0-*) echo "refusing to release version $v"; exit 1;; esac
       - run: npm pack --ignore-scripts
-      - uses: actions/attest-build-provenance@v2
+      - uses: actions/attest-build-provenance@v4
         with:
           subject-path: '*.tgz'
       - name: GitHub release
