@@ -11,6 +11,8 @@ export { register, onRequestError } from '@watchtowerobservability/next';
 // export const register = () => wt({ redact: 'pii' });
 ```
 
+This is the preferred entry point; `@watchtowerobservability/node/next` and `/next-build` are deprecated and still work. After `next build`, run `npx wt-next-doctor`: it checks that `.next/standalone` can load the SDK and each OpenTelemetry package, and exits 1 naming any that fail. `output: 'standalone'` is handled by `withWatchtower` (no `outputFileTracingIncludes` or `serverExternalPackages` of your own; npm, pnpm and monorepos).
+
 ```js
 // next.config.mjs: standalone works with no other config (node SDK + OpenTelemetry peers traced and externalized)
 import { withWatchtower } from '@watchtowerobservability/next/config';
